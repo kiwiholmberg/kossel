@@ -2,12 +2,14 @@ include <configuration.scad>;
 
 separation = 40;  // Distance between ball joint mounting faces.
 offset = 20;  // Same as DELTA_EFFECTOR_OFFSET in Marlin.
-mount_radius = 12.5;  // Hotend mounting screws, standard would be 25mm.
+mount_radius = 12.5;  // Hotend 	mounting screws, standard would be 25mm.
 hotend_radius = 8;  // Hole for the hotend (J-Head diameter is 16mm).
-push_fit_height = 4;  // Length of brass threaded into printed plastic.
+push_fit_height = 3; //4;  // Length of brass threaded into printed plastic.
 height = 8;
 cone_r1 = 2.5;
 cone_r2 = 14;
+
+//NOTES: Decrease the push_fit_height if using a hotend that needs more space over the mountingplate, ie. using Aluhotend (http://reprap.org/wiki/Aluhotend) it needs > 4.7mm hence decrease threaded part to 3mm.
 
 module effector() {
   difference() {
