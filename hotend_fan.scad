@@ -10,7 +10,7 @@ head_height = 21;
 groove_radius = 6;
 groove_height = 4.6;
 
-fan_offset = 15;
+fan_offset = 19;
 
 module hotend_fan() {
   difference() {
@@ -29,12 +29,12 @@ module hotend_fan() {
     // Keep printed plastic away from the hotend.
     intersection() {
       translate([0, 20, 0]) rotate([0, 0, 30])
-        cylinder(r=33 , h=100, center=true, $fn=36);
+        cylinder(r=33 , h=100, center=true, $fn=64);
       translate([0, 23, barrel_height-6])
-        cylinder(r1=barrel_radius-1, r2=100, h=55, $fn=36);
+        cylinder(r1=barrel_radius-1, r2=100, h=55, $fn=64);
         //cube([100, 100 ,barrel_height-6], center=true);
     }
-    
+
     // Groove mount.
     cylinder(r=groove_radius, h=200, center=true, $fn=24);
     // J-Head barrel.
@@ -57,14 +57,17 @@ module hotend_fan() {
     //}
     // Air funnel.
     difference() {
-      translate([0, -1 - fan_offset, 20]) rotate([-90, 0, 0])
-        cylinder(r1=20, r2=0, h=20, $fn=36);
+      translate([0, -11 - fan_offset, 20]) rotate([-110, 0, 0])
+        cylinder(r1=25, r2=9, h=25, $fn=80);
       cube([8, 40, 10], center=true); //center fasting with screw hole to baseplate.
     }
     for (a = [60:60:359]) { 
       rotate([0, 0, a]) translate([0, 12.5, 5]) #
         cylinder(r=m3_radius, h=12, center=true, $fn=12);
     }
+    // Square part in funnel
+    translate([-barrel_radius-1,-20,groove_height], center=true) 
+      cube([(barrel_radius+1)*2,100,barrel_height+8]);
     //Cut the sides so they align with the fan.
     translate([25,0,0])
       cube([10,100,100], center=true);
